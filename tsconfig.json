@@ -22,6 +22,19 @@
     // Some stricter flags (disabled by default)
     "noUnusedLocals": false,
     "noUnusedParameters": false,
-    "noPropertyAccessFromIndexSignature": false
-  }
+    "noPropertyAccessFromIndexSignature": false,
+    "baseUrl": "./",
+    "outDir": "./dist",
+    "paths": {
+      "@database/*": ["database/*"],
+      "@core/*": ["core/*"],
+      "@api/*": ["apps/api/src/*"],
+      "@web/*": ["apps/web/src/*"]
+    }
+  },
+  "include": [
+    "apps/**/*", 
+    "database/**/*",
+    "core/**/*"
+  ]
 }

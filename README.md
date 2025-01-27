@@ -1,15 +1,24 @@
 # file-explorer
 
-To install dependencies:
+## Setup
+- Make an .env file in the root of the project or just copy the .env.example file and rename it to .env
+- Also copy the .env.example file in the apps/api folder and rename it to .env
+
+install dependencies:
 
 ```bash
 bun install
 ```
 
-To run:
+Run Migration:
 
 ```bash
-bun run index.ts
+bun run migration
 ```
 
-This project was created using `bun init` in bun v1.2.0. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+## Running App
+
+```bash
+bun run dev
+```
+
