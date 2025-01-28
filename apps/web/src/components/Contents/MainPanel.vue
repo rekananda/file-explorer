@@ -35,15 +35,15 @@
     name: 'MainPanel',
     setup() {
       const mainStore = useMainStore();
-      const { displayFolder, fetchDisplayFolder } = storeToRefs(mainStore);
+      const { displayFolder } = storeToRefs(mainStore);
 
       const selectFolder = (folderId) => {
-        fetchDisplayFolder(folderId);
+        mainStore.fetchDisplayFolder(folderId);
       };
 
       return {
         displayFolder,
-        selectFolder,
+        selectFolder
       };
     },
   });
