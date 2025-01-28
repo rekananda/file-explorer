@@ -5,6 +5,15 @@ export type FolderT = InferSelectModel<typeof schema.folderSchema>;
 export type FolderInsertT = InferInsertModel<typeof schema.folderSchema>;
 export type FolderUpdateT = Partial<FolderInsertT>;
 export type FolderDeleteT = { id: string[] };
+export type FolderTreeT = InferSelectModel<typeof schema.folderSchema> & {
+  childs?: FolderTreeT[];
+};
+export type FolderDetailT = {
+  folder: FolderT|null;
+  folders: FolderT[];
+  files: FileT[];
+  path: string;
+};
 
 export type FileT = InferSelectModel<typeof schema.fileSchema>;
 export type FileInsertT = InferInsertModel<typeof schema.fileSchema>;

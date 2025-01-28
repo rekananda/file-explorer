@@ -25,8 +25,15 @@ export const fileSchema = pgTable("file", {
   status: boolean("status").notNull().default(true),
 });
 
-export const folderRelations = relations(folderSchema, ({ many }) => ({
-  children: many(folderSchema, { relationName: "parentId" }),
+export const folderRelations = relations(folderSchema, ({ one, many }) => ({
+  parent: one(folderSchema, {
+    fields: [folderSchema.parentId],
+    references: [folderSchema.id],
+    relationName: "folders",
+  }),
+  childs: many(folderSchema, {
+    relationName: "folders",
+  }),
   files: many(fileSchema),
 }));
 
