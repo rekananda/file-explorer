@@ -26,3 +26,9 @@ bun run dev
 ## API Documentation
 - [API Documentation](http://localhost:3001/swagger)
 
+## How To Use
+- Click on the "+ Add" button to add a new folder or file
+- Click on the folder icon/name to open the folder (on display panel/ right side, also on sidebar/left side)
+- Click on icon chevron icon to expand whats inside folder
+- Right click on folder icon/name to 
+
