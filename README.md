@@ -23,3 +23,6 @@ bun run migration
 bun run dev
 ```
 
+## API Documentation
+- [API Documentation](http://localhost:3001/swagger)
+

@@ -26,6 +26,38 @@ export const useMainStore = defineStore('main', {
       this.displayFolder.folders = response.data.data.folders;
       this.displayFolder.files = response.data.data.files;
       this.path = response.data.data.path;
+    },
+    async postCreate(type: "folder"|"file", name: string) {
+      const payload = {
+        name,
+        ...(this.currentFolder ? { [type === "folder" ? "parentId" : "folderId"]: this.currentFolder.id } : {})
+      };
+    
+      try {
+        const url = `${config.apiUrl}${type}${type === "file" ? "/text" : ""}`;
+    
+        const response: AxiosResponse<ApiReturn<FolderDetailT>> = await axios.post(url, payload);
+        if (response.data.status == 200) {
+          await this.fetchDisplayFolder(this.currentFolder?this.currentFolder.id:undefined);
+
+          if (type === "folder") {
+            await this.fetchFolderTree();
+          }
+        } else {
+          console.error("API response was not successful:", response.data);
+        }
+      } catch (error) {
+        console.error("Error creating item:", error);
+      }
+    },
+    async deleteItem(type: "folder"|"file", id: string) {
+      const response: AxiosResponse<ApiReturn<FolderDetailT>> = await axios.delete(`${config.apiUrl}${type}`, {data: {id: [id]}});
+      if (response.data.status == 200) {
+        await this.fetchDisplayFolder(this.currentFolder?this.currentFolder.id:undefined);
+        if (type === "folder") {
+          await this.fetchFolderTree();
+        }
+      }
     }
   },
 });

@@ -2,7 +2,7 @@
   <div>
     <li class="cursor-pointer p-2 flex items-center">
       <i v-if="folder.childs && folder.childs.length" @click.stop="toggleFolder" class="pi mr-2 cursor-pointer" :class="expanded ? 'pi-chevron-down' : 'pi-chevron-right'"></i>
-      <div @click.stop="selectFolder" class="flex items-center w-full" :class="folder.childs ? 'ml-0' : 'ml-6'">
+      <div @click.stop="selectFolder" class="flex items-center w-full" :class="folder.childs || props.root ? 'ml-0' : 'ml-6'">
         <i :class="['pi', currentFolder?.id === folder.id ? 'pi-folder-open' : 'pi-folder', 'mr-2', { 'text-blue-500': currentFolder?.id === folder.id }]"></i>
         {{ folder.name }}
       </div>
@@ -22,6 +22,10 @@ export default defineComponent({
   name: 'FolderItem',
   props: {
     folder: Object,
+    root: {
+      type: Boolean,
+      default: false,
+    },
   },
   setup(props) {
     const mainStore = useMainStore();
@@ -37,6 +41,7 @@ export default defineComponent({
     };
 
     return {
+      props,
       expanded,
       currentFolder,
       toggleFolder,
