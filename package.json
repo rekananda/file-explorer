@@ -11,7 +11,7 @@
   "scripts": {
     "dev": "concurrently \"bun run start-api\" \"bun run start-web\"",
     "migrate": "drizzle-kit generate && drizzle-kit push",
-    "start-api": "cd apps/api && bun run dev",
+    "start-api": "cd apps/be && bun run dev",
     "start-web": "cd apps/web && bun run dev"
   },
   "devDependencies": {
